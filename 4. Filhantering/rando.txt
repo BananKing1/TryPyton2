@@ -1,0 +1,17 @@
+filnamn = input("Ange filnamn: ") + ".txt"  # Ange filnamnet
+
+while True:  # Evighetsloop tills filen öppnas korrekt
+    try:
+        with open(filnamn, 'r') as f:  # Öppna filen i läsläge ('r')
+            lista = f.readlines()  # Läs in alla rader i en lista
+            
+            for n, rader in enumerate(lista, start=1):  # Använd enumerate för numrering
+                print(n, rader.strip())  # Skriv ut radnumret och innehållet utan extra radbrytning
+                input("Tryck Enter för nästa rad...")  # Pausar för varje rad
+            
+        print("\nNu är alla rader utskrivna!")  # Meddelande om att det är klart
+        break  # Avsluta loopen
+
+    except FileNotFoundError:
+        print("Filen finns inte. Ange ett korrekt filnamn.")  # Felmeddelande
+        filnamn = input("Ange filnamn: ") + ".txt"  # Be om nytt filnamn
